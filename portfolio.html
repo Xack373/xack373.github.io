@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | The Abdullayev</title><meta name="description" content="Game Developer | Unity, Blender 3D, Telegram Bots & Automation">
+    <meta name="keywords" content="Unity, Game Dev, Blender, Python, Telegram Bot">
+    <meta name="author" content="The Abdullayev">
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #020617, #0f172a);
+            color: #e5e7eb;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        /* ===== Header ===== */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 1.2s ease;
+        }
+
+        header h1 {
+            font-size: 56px;
+            font-weight: 700;
+        }
+
+        header span {
+            color: #38bdf8;
+        }
+
+        header p {
+            margin-top: 15px;
+            font-size: 20px;
+            color: #94a3b8;
+        }
+
+        /* ===== Language Switch ===== */
+        .lang {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .lang button {
+            background: #020617;
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .lang button:hover {
+            background: #38bdf8;
+            color: #020617;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 20px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60px;
+            height: 4px;
+            background: #38bdf8;
+        }
+
+        /* ===== Cards ===== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(2, 6, 23, 0.9);
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            transition: 0.4s ease;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .card.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(56, 189, 248, 0.25);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 15px;
+            color: #cbd5f5;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #94a3b8;
+            border-top: 1px solid #1e293b;
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== Mobile ===== */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 38px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+        }
+
+        /* ===== Navbar ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            z-index: 1000;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #38bdf8;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #e5e7eb;
+            font-size: 15px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: #38bdf8;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        header {
+            padding-top: 120px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+
+        .open-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+            color: #020617;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .open-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+        }
+
+
+        /* ===== Skills Icons ===== */
+        .skill-card {
+            text-align: center;
+        }
+
+        .skill-card .icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+            color: #020617;
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
+            transition: 0.4s ease;
+        }
+
+        .skill-card:hover .icon {
+            transform: rotate(10deg) scale(1.1);
+            box-shadow: 0 20px 40px rgba(56, 189, 248, 0.6);
+        }
+
+
+        /* ===== Skill Progress ===== */
+        .progress {
+            width: 100%;
+            height: 8px;
+            background: #020617;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 10px 0 4px;
+        }
+
+        .progress span {
+            display: block;
+            height: 100%;
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+            animation: load 1.5s ease forwards;
+        }
+
+        @keyframes load {
+            from {
+                width: 0;
+            }
+        }
+
+        /* ===== Tooltip ===== */
+        .skill-card {
+            position: relative;
+        }
+
+        .skill-card::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #020617;
+            color: #e5e7eb;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .skill-card:hover::after {
+            opacity: 1;
+        }
+
+
+        /* ===== Contact ===== */
+        .contact-card {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .contact-icon {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 34px;
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+            color: #020617;
+            box-shadow: 0 15px 35px rgba(56, 189, 248, 0.45);
+            transition: 0.4s ease;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.15) rotate(8deg);
+            box-shadow: 0 25px 55px rgba(56, 189, 248, 0.7);
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="test-banner">
+        ⚠️ Sayt test rejimida ishlamoqda ⚠️
+    </div>
+
+
+    <!-- ===== Navbar ===== -->
+    <nav class="navbar">
+        <div class="logo">The<span> Abdullayev</span></div>
+        <div id="test-banner">
+            ⚠️ Sayt test rejimida ishlamoqda ⚠️
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="lang-panel">
+        <button id="lang-toggle">🌐 Language</button>
+        <div class="lang-options">
+            <button onclick="setLang('uz')">UZ</button>
+            <button onclick="setLang('ru')">RU</button>
+            <button onclick="setLang('en')">EN</button>
+        </div>
+    </div>
+
+    <style>
+        .lang-panel {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            z-index: 1100;
+        }
+
+        #lang-toggle {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .lang-options {
+            display: none;
+            flex-direction: column;
+            margin-top: 8px;
+            gap: 5px;
+        }
+
+        .lang-options button {
+            background: #0f172a;
+            color: #e5e7eb;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .lang-options button:hover {
+            background: #1e293b;
+            color: #38bdf8;
+        }
+
+        #test-banner {
+            background-color: #ffcc00;
+            color: #000;
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+
+    <script>
+        const toggleBtn = document.getElementById('lang-toggle');
+        const options = document.querySelector('.lang-options');
+        toggleBtn.addEventListener('click', () => {
+            options.style.display = options.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+
+
+
+    <header id="home">
+        <h1><span>The</span> Abdullayev</h1>
+        <p id="hero-text">Unity Game Developer | Blender 3D | Python Automation</p>
+    </header>
+
+    <section id="about">
+        <h2 id="about-title">About Me</h2>
+        <p id="about-text">
+            Salom!<br>
+            Men <strong>The Abdullayev,</strong> Unity Game Developer, Blender 3D artist va Python automation
+            mutaxassisiman.<br>
+            O‘yin yaratish va interaktiv dasturlar ishlab chiqish mening ishim bo‘lib, har bir loyiha yangi muammolarni
+            yechish va texnikani ijod bilan uyg‘unlashtirish imkonini beradi.<br><br>
+            <strong>Mening portfoliomdagi ishlarim:</strong><br>
+            <strong>Car Game</strong><br>
+            Realistik avtomobil fizikasi va boshqaruvni yaratdim. Mashinalar haqiqiy hayotdagi kabi harakat qiladi.
+            Loyihaning build’i optimizatsiyalangan, Android va PC uchun barqaror ishlaydi va foydalanuvchi tajribasi
+            yuqori.<br>
+            <strong>3D modellar</strong><br>
+            O‘yinlar uchun tayyor 3D modellar yaratdim, ularni optimizatsiya qilib, multiplatform eksportga mos qildim.
+            Har bir model dizayn jihatdan chiroyli, ishlash jihatidan yengil.<br>
+            <strong>Dasturlari va botlar</strong><br>
+            Telegram botlar, EXE dasturlar va avtomatizatsiya vositalarini ishlab chiqdim. Ular kundalik ishlarni
+            avtomatlashtirish, ma’lumotlarni boshqarish va monitoring qilish uchun mo‘ljallangan.<br>
+            <strong>Ishlash tamoyilim:</strong><br>
+            Har bir <em>loyihada → yechim → natija</em> prinsipiga amal qilaman. Ishlarim nafaqat texnik, balki
+            professional ko‘rinishda bo‘ladi.<br>
+            <strong>Mening maqsadim:</strong><br>
+            Interaktiv, optimizatsiyalangan va foydalanuvchiga qulay mahsulotlar yaratish, ish beruvchiga ishonch
+            beradigan portfolioga ega bo‘lishdir.
+        </p>
+    </section>
+
+
+    <section id="skills">
+        <h2 id="skills-title">Skills</h2>
+        <div class="grid">
+
+            <div class="card skill-card" data-tip="UI, animations & responsiveness">
+                <div class="icon">🎨</div>
+                <h3>Frontend Development</h3>
+                <div class="progress"><span style="width:80%"></span></div>
+                <small>80%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="Game systems & mechanics">
+                <div class="icon">🎮</div>
+                <h3>Unity Development</h3>
+                <div class="progress"><span style="width:90%"></span></div>
+                <small>90%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="Bots & integrations">
+                <div class="icon">📡</div>
+                <h3>Telegram Bot Development</h3>
+                <div class="progress"><span style="width:85%"></span></div>
+                <small>85%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="AI logic, NPC & automation">
+                <div class="icon">🧠</div>
+                <h3>AI Programming</h3>
+                <div class="progress"><span style="width:87%"></span></div>
+                <small>87%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="Clean code, OOP & optimization">
+                <div class="icon">⚙️</div>
+                <h3>C# Advanced</h3>
+                <div class="progress"><span style="width:80%"></span></div>
+                <small>80%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="Automation scripts & tools">
+                <div class="icon">🤖</div>
+                <h3>Python Automation</h3>
+                <div class="progress"><span style="width:75%"></span></div>
+                <small>75%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="Desktop system utilities">
+                <div class="icon">💻</div>
+                <h3>PC Manager</h3>
+                <div class="progress"><span style="width:80%"></span></div>
+                <small>80%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="Mobile system control tools">
+                <div class="icon">📱</div>
+                <h3>Mobile Manager</h3>
+                <div class="progress"><span style="width:70%"></span></div>
+                <small>70%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="Camera access & stream analysis">
+                <div class="icon">📷</div>
+                <h3>Camera Cracking</h3>
+                <div class="progress"><span style="width:40%"></span></div>
+                <small>40%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="Game-ready 3D assets">
+                <div class="icon">🧊</div>
+                <h3>Blender 3D</h3>
+                <div class="progress"><span style="width:80%"></span></div>
+                <small>80%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="High-quality visuals">
+                <div class="icon">🖥️</div>
+                <h3>Rendering</h3>
+                <div class="progress"><span style="width:85%"></span></div>
+                <small>85%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="Game & realistic vehicles">
+                <div class="icon">🏎️</div>
+                <h3>Car Modeling</h3>
+                <div class="progress"><span style="width:80%"></span></div>
+                <small>80%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="Marketing & content writing">
+                <div class="icon">✍️</div>
+                <h3>Copywriting</h3>
+                <div class="progress"><span style="width:75%"></span></div>
+                <small>75%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="Secure integrations">
+                <div class="icon">🔑</div>
+                <h3>API Token Management</h3>
+                <div class="progress"><span style="width:75%"></span></div>
+                <small>75%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="Scheduled & automated messaging">
+                <div class="icon">📨</div>
+                <h3>Auto Messaging Systems</h3>
+                <div class="progress"><span style="width:80%"></span></div>
+                <small>80%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="Data extraction tools">
+                <div class="icon">🧲</div>
+                <h3>Data Ripper</h3>
+                <div class="progress"><span style="width:70%"></span></div>
+                <small>70%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="Memory & game analysis">
+                <div class="icon">🎯</div>
+                <h3>Game Memory Tools</h3>
+                <div class="progress"><span style="width:65%"></span></div>
+                <small>65%</small>
+            </div>
+
+            <div class="card skill-card" data-tip="Realistic vehicle behavior">
+                <div class="icon">🚗</div>
+                <h3>Vehicle Physics</h3>
+                <div class="progress"><span style="width:85%"></span></div>
+                <small>85%</small>
+            </div>
+
+
+    </section>
+
+    <section id="projects">
+        <h2 id="projects-title">Projects</h2>
+        <div class="grid">
+
+            <!-- 1. Frontend Development -->
+            <div class="card">
+                <img src="./images/frontend.png" alt="Frontend Portfolio Screenshot">
+                <h3>Interactive Portfolio Website</h3>
+                <p><b>Muammo:</b> Foydalanuvchi interfeysi eski va animatsiyalar yo‘q, responsive dizayn mavjud emas
+                    edi.</p>
+                <p><b>Yechim:</b> React va TailwindCSS yordamida interaktiv komponentlar va smooth animatsiyalar
+                    qo‘shildi, barcha ekran o‘lchamlariga moslashdi.</p>
+                <p><b>Natija:</b> Zamonaviy UI, tezkor animatsiyalar va barcha qurilmalarda mukammal ko‘rinish.</p>
+                <p><b>Tech:</b> HTML, CSS, JavaScript, React, TailwindCSS</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 2. Unity Development -->
+            <div class="card">
+                <img src="./images/unity_game.png" alt="Unity Game Screenshot">
+                <h3>3D Action Game</h3>
+                <p><b>Muammo:</b> O‘yin fizikasi va grafikasi optimallashtirilmagan, FPS past edi.</p>
+                <p><b>Yechim:</b> Unity’da C# scriptlar bilan fizikani sozlash, Blender’da modellarning optimizatsiyasi,
+                    lightmapping va LOD qo‘llash.</p>
+                <p><b>Natija:</b> Smooth gameplay, barqaror FPS va realistik o‘yin muhiti.</p>
+                <p><b>Tech:</b> Unity, C#, Blender</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 3. Telegram Bot Development -->
+            <div class="card">
+                <img src="./images/telegram.png" alt="Telegram Bot Screenshot">
+                <h3>Advanced Telegram Bot</h3>
+                <p><b>Muammo:</b> Avtomatik javoblar cheklangan va integratsiyalar mavjud emas edi.</p>
+                <p><b>Yechim:</b> Python va Telegram API yordamida botga avtomatik javob berish, inline menu, va
+                    third-party integratsiyalar qo‘shildi.</p>
+                <p><b>Natija:</b> Foydalanuvchilar bilan interaktiv va samarali aloqa, server orqali monitoring va
+                    analytics mavjud.</p>
+                <p><b>Tech:</b> Python, Telegram API, SQLite</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 4. AI Programming -->
+            <div class="card">
+                <img src="./images/ai_npc.png" alt="AI NPC Screenshot">
+                <h3>AI NPC System</h3>
+                <p><b>Muammo:</b> O‘yin ichidagi NPC’lar harakat va qaror qabul qilishda realistik emas edi.</p>
+                <p><b>Yechim:</b> Unity’da behavior tree va C# AI logic yaratildi, NPC’lar atrof-muhitga moslashadi va
+                    avtomatik strategiya tanlaydi.</p>
+                <p><b>Natija:</b> Realistik va interaktiv NPC’lar, o‘yin tajribasi sezilarli darajada yaxshilandi.</p>
+                <p><b>Tech:</b> Unity, C#, AI Logic</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 5. C# Advanced -->
+            <div class="card">
+                <img src="./images/csharp.png" alt="C# Advanced Screenshot">
+                <h3>Custom Game Engine Tools</h3>
+                <p><b>Muammo:</b> Dasturdagi kod murakkab va qayta ishlatish qiyin edi.</p>
+                <p><b>Yechim:</b> OOP va clean code printsiplari asosida modul va scriptlarni qayta yozish, performance
+                    optimizatsiya.</p>
+                <p><b>Natija:</b> Katta loyihalar uchun tezkor, oson integratsiya qilinadigan va optimizatsiyalangan C#
+                    kod.</p>
+                <p><b>Tech:</b> C#, OOP, Unity</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 6. Python Automation -->
+            <div class="card">
+                <img src="./images/python_auto.png" alt="Python Automation Screenshot">
+                <h3>Python Automation Scripts</h3>
+                <p><b>Muammo:</b> Kundalik vazifalar qo‘lda bajarilmoqda, vaqt va resurslar sarflanadi.</p>
+                <p><b>Yechim:</b> Python yordamida fayllarni avtomatik tashkil qilish, SMS va email jo‘natish, va web
+                    scraping scriptlari yaratildi.</p>
+                <p><b>Natija:</b> Vazifalar avtomatlashtirildi, vaqt tejaldi va ish samaradorligi oshdi.</p>
+                <p><b>Tech:</b> Python, Selenium, smtplib, OS</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 7. PC Manager -->
+            <div class="card">
+                <img src="./images/pc_manager.png" alt="PC Manager Screenshot">
+                <h3>Desktop System Utility</h3>
+                <p><b>Muammo:</b> Foydalanuvchilar tizim resurslarini boshqarishda qiyinchilikka duch kelishdi.</p>
+                <p><b>Yechim:</b> Windows uchun resource monitor, startup manager va cleanup tools yaratildi.</p>
+                <p><b>Natija:</b> Kompyuter samaradorligi oshdi, foydalanuvchi uchun qulay interfeys.</p>
+                <p><b>Tech:</b> C#, .NET, WPF</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 8. Mobile Manager -->
+            <div class="card">
+                <img src="./images/mobile_manager.png" alt="Mobile Manager Screenshot">
+                <h3>Mobile Device Utility</h3>
+                <p><b>Muammo:</b> Mobile qurilmalarni boshqarish va monitoring qilish qiyin edi.</p>
+                <p><b>Yechim:</b> Android va iOS uchun file manager, app control va notification monitoring qo‘shildi.
+                </p>
+                <p><b>Natija:</b> Mobil qurilmalar samarali boshqariladi, foydalanuvchi qulayligi oshdi.</p>
+                <p><b>Tech:</b> Java/Kotlin, Swift, React Native</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 9. Camera Cracking -->
+            <div class="card">
+                <img src="./images/camera_tools.png" alt="Camera Tools Screenshot">
+                <h3>Camera Monitoring Tool</h3>
+                <p><b>Muammo:</b> Video streamlarni tahlil qilish va monitoring qilish vositalari mavjud emas edi.</p>
+                <p><b>Yechim:</b> Camera access API va real-time stream analysis scriptlari yaratildi.</p>
+                <p><b>Natija:</b> Real-time monitoring, obyekt aniqlash va tahlil qilish imkoniyati mavjud.</p>
+                <p><b>Tech:</b> Python, OpenCV, Flask</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 10. Blender 3D -->
+            <div class="card">
+                <img src="./images/blender.png" alt="Blender 3D Screenshot">
+                <h3>Game-ready 3D Assets</h3>
+                <p><b>Muammo:</b> O‘yin uchun 3D modellarning optimizatsiyasi past edi.</p>
+                <p><b>Yechim:</b> Blender’da polygon kamaytirish, texture baking va LOD yaratish.</p>
+                <p><b>Natija:</b> Optimized 3D assets, tez yuklanadigan o‘yin muhiti.</p>
+                <p><b>Tech:</b> Blender, Substance Painter</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 11. Rendering -->
+            <div class="card">
+                <img src="./images/rendering.png" alt="Rendering Screenshot">
+                <h3>High-quality Renderings</h3>
+                <p><b>Muammo:</b> Visuals past sifatli va yoritish noaniq edi.</p>
+                <p><b>Yechim:</b> Blender va Eevee/Cycles renderlar, lighting va material optimizatsiyasi qo‘shildi.</p>
+                <p><b>Natija:</b> Realistic visuals va yuqori sifatli renderinglar.</p>
+                <p><b>Tech:</b> Blender, Photoshop, Eevee/Cycles</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 12. Car Modeling -->
+            <div class="card">
+                <img src="./images/car_model.png" alt="Car Modeling Screenshot">
+                <h3>Game & Realistic Vehicles</h3>
+                <p><b>Muammo:</b> Mashinalar realistik ko‘rinmaydi va fizika bilan mos kelmaydi.</p>
+                <p><b>Yechim:</b> Blender’da high-poly modeling, texture va rigging yaratildi, Unity uchun import
+                    optimizatsiya qilindi.</p>
+                <p><b>Natija:</b> Realistik ko‘rinish va o‘yin uchun tayyor mashinalar.</p>
+                <p><b>Tech:</b> Blender, Unity, Substance Painter</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 13. API Token Management -->
+            <div class="card">
+                <img src="./images/api.png" alt="API Token Screenshot">
+                <h3>Secure API Token Management</h3>
+                <p><b>Muammo:</b> API integratsiyalari xavfsiz emas va tokenlar noto‘g‘ri ishlatiladi edi.</p>
+                <p><b>Yechim:</b> Token encryption, refresh mechanism va secure storage qo‘shildi.</p>
+                <p><b>Natija:</b> Safe API integrations va server monitoring mavjud.</p>
+                <p><b>Tech:</b> Python, Node.js, JWT, SQLite</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 14. Auto Messaging Systems -->
+            <div class="card">
+                <img src="./images/auto_msg.png" alt="Auto Messaging Screenshot">
+                <h3>Scheduled Messaging System</h3>
+                <p><b>Muammo:</b> Xabarlarni qo‘lda jo‘natish vaqt oladi va xatolarga olib keladi.</p>
+                <p><b>Yechim:</b> Scheduled task va automation scriptlar yordamida xabarlarni rejalashtirish va
+                    jo‘natish.</p>
+                <p><b>Natija:</b> Avtomatik va ishonchli xabar jo‘natish tizimi.</p>
+                <p><b>Tech:</b> Python, cron jobs, Telegram API</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 15. Copywriting -->
+            <div class="card">
+                <img src="./images/copywriting.png" alt="Copywriting Screenshot">
+                <h3>Marketing & Content Writing</h3>
+                <p><b>Muammo:</b> Kontent foydalanuvchilarni jalb qilmaydi va marketing samarasi past edi.</p>
+                <p><b>Yechim:</b> SEO, engaging content va automation tools yordamida blog post va marketing copy
+                    yaratildi.</p>
+                <p><b>Natija:</b> Ko‘proq foydalanuvchi jalb qilish va brend imiji yaxshilandi.</p>
+                <p><b>Tech:</b> WordPress, SEO tools, Copywriting</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 16. Data Ripper -->
+            <div class="card">
+                <img src="./images/data_ripper.png" alt="Data Ripper Screenshot">
+                <h3>Data Extraction Tools</h3>
+                <p><b>Muammo:</b> Ma’lumotlarni qo‘lda yig‘ish vaqt talab qiladi va xatoliklar mavjud edi.</p>
+                <p><b>Yechim:</b> Web scraping, API extraction va data cleaning scriptlar yaratildi.</p>
+                <p><b>Natija:</b> Tezkor va to‘liq ma’lumotlarni olish imkoniyati.</p>
+                <p><b>Tech:</b> Python, BeautifulSoup, Requests, Pandas</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 17. Game Memory Tools -->
+            <div class="card">
+                <img src="./images/game_memory.png" alt="Game Memory Screenshot">
+                <h3>Game Memory Analysis Tools</h3>
+                <p><b>Muammo:</b> O‘yin jarayonidagi ma’lumotlarni tahlil qilish murakkab edi.</p>
+                <p><b>Yechim:</b> Memory reading, debugging va analysis scriptlar yaratildi.</p>
+                <p><b>Natija:</b> O‘yin debugging va testing jarayoni samarali bo‘ldi.</p>
+                <p><b>Tech:</b> C#, Python, Cheat Engine API</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+            <!-- 18. Vehicle Physics -->
+            <div class="card">
+                <img src="./images/vehicle_physics.png" alt="Vehicle Physics Screenshot">
+                <h3>Realistic Vehicle Physics</h3>
+                <p><b>Muammo:</b> O‘yin mashinalari realistik harakat qilmaydi va boshqaruv qiyin.</p>
+                <p><b>Yechim:</b> Custom Rigidbody physics, wheel collider optimizatsiyasi va input smoothing qo‘shildi.
+                </p>
+                <p><b>Natija:</b> Realistik boshqaruv va o‘yin tajribasi sezilarli darajada yaxshilandi.</p>
+                <p><b>Tech:</b> Unity, C#, Blender</p>
+                <a class="open-btn" href="#" target="_blank">🔗 Open Project</a>
+            </div>
+
+
+        </div>
+    </section>
+
+
+    <section id="contact">
+        <h2 id="contact-title">Contact</h2>
+        <div class="grid">
+
+            <a class="card contact-card" href="https://t.me/The_Abdullayev" target="_blank">
+                <div class="contact-icon">📨</div>
+                <h3>Telegram</h3>
+                <p>@The_Abdullayev</p>
+            </a>
+
+            <a class="card contact-card" href="https://github.com/Xack373" target="_blank">
+                <div class="contact-icon">💻</div>
+                <h3>GitHub</h3>
+                <p>github.com/Xack373</p>
+            </a>
+
+            <a class="card contact-card" href="mailto:blackhack0504@gmail.com">
+                <div class="contact-icon">✉️</div>
+                <h3>Email</h3>
+                <p>blackhack0504@gmail.com</p>
+            </a>
+
+        </div>
+    </section>
+
+    <footer>
+        © 2026 The Abdullayev · Professional Developer Portfolio
+    </footer>
+
+    <script>
+        // Scroll animation
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('show');
+            });
+        }, {
+            threshold: 0.2
+        });
+        cards.forEach(card => observer.observe(card));
+
+        // Full multilingual About Me
+        function setLang(lang) {
+            const heroTexts = {
+                en: 'Unity Game Developer | Blender 3D | Python Automation',
+                ru: 'Unity разработчик | Blender 3D | Python автоматизация',
+                uz: 'Unity Game Developer | Blender 3D | Python Automation'
+            };
+
+            const aboutTitles = {
+                en: 'About Me',
+                ru: 'Обо мне',
+                uz: 'Men haqimda'
+            };
+
+            const aboutTexts = {
+                en: `Hello!<br>
+    I am <strong>The Abdullayev,</strong> a Unity Game Developer, Blender 3D artist, and Python automation specialist.<br>
+    Creating games and interactive applications is my work, and each project gives me the opportunity to solve new challenges and combine technical solutions with creativity.<br><br>
+    <strong>My projects:</strong><br>
+    <strong>Car Game</strong><br>
+    I created realistic car physics and controls. Vehicles behave like in real life. Project build is optimized for Android and PC with a high-quality user experience.<br>
+    <strong>3D Models</strong><br>
+    I made ready-to-use 3D models for games, optimized and prepared for multiplatform export. Each model is visually appealing and lightweight.<br>
+    <strong>Programs and Bots</strong><br>
+    I developed Telegram bots, EXE programs, and automation tools for daily tasks, data management, and monitoring.<br>
+    <strong>Work principle:</strong><br>
+    I follow the <em>problem → solution → result</em> principle, ensuring professional and technically accurate work.<br>
+    <strong>My goal:</strong><br>
+    To create interactive, optimized, and user-friendly products that inspire employer trust.`,
+
+                ru: `Привет!<br>
+    Я <strong>The Abdullayev,</strong> Unity разработчик, Blender 3D художник и специалист по автоматизации на Python.<br>
+    Создание игр и интерактивных приложений — моя работа, и каждый проект даёт возможность решать новые задачи и сочетать технические решения с креативом.<br><br>
+    <strong>Мои проекты:</strong><br>
+    <strong>Car Game</strong><br>
+    Я создал реалистичную физику и управление автомобилями. Машины ведут себя как в реальной жизни. Сборка проекта оптимизирована для Android и ПК, пользовательский опыт высокий.<br>
+    <strong>3D модели</strong><br>
+    Создал готовые 3D модели для игр, оптимизировал и подготовил для мультиплатформенного экспорта. Каждая модель красива визуально и лёгкая в работе.<br>
+    <strong>Программы и боты</strong><br>
+    Разработал Telegram-ботов, EXE-программы и инструменты автоматизации для повседневных задач, управления данными и мониторинга.<br>
+    <strong>Принцип работы:</strong><br>
+    Следую принципу <em>проблема → решение → результат</em>, обеспечивая профессиональную и технически точную работу.<br>
+    <strong>Моя цель:</strong><br>
+    Создавать интерактивные, оптимизированные и удобные продукты, вызывающие доверие работодателя.`,
+
+                uz: `Salom!<br>
+    Men <strong>The Abdullayev,</strong> Unity Game Developer, Blender 3D artist va Python automation mutaxassisiman.<br>
+    O‘yin yaratish va interaktiv dasturlar ishlab chiqish mening ishim bo‘lib, har bir loyiha yangi muammolarni yechish va texnikani ijod bilan uyg‘unlashtirish imkonini beradi.<br><br>
+    <strong>Mening portfoliomdagi ishlarim:</strong><br>
+    <strong>Car Game</strong><br>
+    Realistik avtomobil fizikasi va boshqaruvni yaratdim. Mashinalar haqiqiy hayotdagi kabi harakat qiladi. Loyihaning build’i optimizatsiyalangan, Android va PC uchun barqaror ishlaydi va foydalanuvchi tajribasi yuqori.<br>
+    <strong>3D modellar</strong><br>
+    O‘yinlar uchun tayyor 3D modellar yaratdim, ularni optimizatsiya qilib, multiplatform eksportga mos qildim. Har bir model dizayn jihatdan chiroyli, ishlash jihatidan yengil.<br>
+    <strong>Dasturlari va botlar</strong><br>
+    Telegram botlar, EXE dasturlar va avtomatizatsiya vositalarini ishlab chiqdim. Ular kundalik ishlarni avtomatlashtirish, ma’lumotlarni boshqarish va monitoring qilish uchun mo‘ljallangan.<br>
+    <strong>Ishlash tamoyilim:</strong><br>
+    Har bir <em>loyihada → yechim → natija</em> prinsipiga amal qilaman. Ishlarim nafaqat texnik, balki professional ko‘rinishda bo‘ladi.<br>
+    <strong>Mening maqsadim:</strong><br>
+    Interaktiv, optimizatsiyalangan va foydalanuvchiga qulay mahsulotlar yaratish, ish beruvchiga ishonch beradigan portfolioga ega bo‘lishdir.`
+            };
+
+            // Set content
+            document.getElementById('hero-text').innerHTML = heroTexts[lang];
+            document.getElementById('about-title').innerHTML = aboutTitles[lang];
+            document.getElementById('about-text').innerHTML = aboutTexts[lang];
+        }
+    </script>
+
+</body>
+
+</html>
